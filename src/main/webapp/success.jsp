@@ -1,18 +1,18 @@
-<%@ page language="java" contentType="text/html; charset=ISO-8859-1"
-    pageEncoding="ISO-8859-1"%>
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+    pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <html>
 <head>
-<meta charset="ISO-8859-1">
+<meta charset="UTF-8">
 <title>Insert title here</title>
 </head>
 <body>
 	<form action="index.jsp">
 		<h3>
-		<%request.getParameter("msg"); %>
-		Sucessfull
+		<%=request.getParameter("msg") %>
+		realizado con éxito
 		</h3>
-		</br><input type ="submit" value="Volver a la p�gina de inicio">
+		</br><input type ="submit" value="Volver a la página de inicio">
 	</form>
 
 </body>

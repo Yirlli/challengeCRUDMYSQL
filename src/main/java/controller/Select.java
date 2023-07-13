@@ -43,7 +43,7 @@ public class Select extends HttpServlet {
 			String nombre= "", email="", telefono = "";
 			Connection conn = DriverManager.getConnection(ConexionBD.url, ConexionBD.user, ConexionBD.password);
 			System.out.println("Conexion exitosa");
-			PreparedStatement st = conn.prepareStatement("select * from table where id=?");
+			PreparedStatement st = conn.prepareStatement("select * from usuarios where id=?");
 			st.setInt(1, Integer.valueOf(request.getParameter("id")));
 			
 			ResultSet rs = st.executeQuery();

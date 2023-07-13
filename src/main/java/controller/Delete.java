@@ -48,13 +48,13 @@ public class Delete extends HttpServlet {
 		try {
 			Connection conn = DriverManager.getConnection(ConexionBD.url, ConexionBD.user, ConexionBD.password);
 			System.out.println("Conexion exitosa");
-			PreparedStatement st = conn.prepareStatement("delete from table where id=?");
+			PreparedStatement st = conn.prepareStatement("delete from usuarios where id=?");
 			st.setInt(1, Integer.valueOf(request.getParameter("id")));
 			st.executeUpdate();
 			st.close();
 			conn.close();
 			
-			response.sendRedirect("success.jsp?msg=Delete");
+			response.sendRedirect("success.jsp?msg= Usuario eliminado");
 		}catch(Exception e) {
 			e.printStackTrace();
 		}

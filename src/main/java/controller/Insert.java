@@ -74,7 +74,7 @@ public class Insert extends HttpServlet {
 			
 			
 			// se redirige a la vista de creacion satisfactoria
-			response.sendRedirect("Success.jsp?msg=Insert");
+			response.sendRedirect("success.jsp?msg=Ingreso a la base de datos");
 			
 			
 			
