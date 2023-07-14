@@ -1,7 +1,6 @@
 package controller;
 
 import jakarta.servlet.ServletException;
-import jakarta.servlet.annotation.WebServlet;
 import jakarta.servlet.http.HttpServlet;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
@@ -40,7 +39,7 @@ public class Select extends HttpServlet {
 		try {
 			
 			int id = 0;
-			String nombre= "", email="", telefono = "";
+			String nombre= "", email="";
 			Connection conn = DriverManager.getConnection(ConexionBD.url, ConexionBD.user, ConexionBD.password);
 			System.out.println("Conexion exitosa");
 			PreparedStatement st = conn.prepareStatement("select * from usuarios where id=?");
@@ -51,13 +50,14 @@ public class Select extends HttpServlet {
 				id = rs.getInt(1);
 				nombre=rs.getString(2);
 				email= rs.getString(3);
-				telefono = rs.getString(4);
+			
 			}
 			rs.close();
 			st.close();
 			conn.close();
 			
-			response.sendRedirect("show.jsp?id=" + id +"&name"+nombre+"&email" +email +"&telefono" + telefono);
+	
+			response.sendRedirect("show.jsp?id=" + id +"&nombre="+nombre+"&email=" +email );
 		}catch(Exception e) {
 			e.printStackTrace();
 		}

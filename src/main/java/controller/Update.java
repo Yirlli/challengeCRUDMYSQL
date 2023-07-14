@@ -10,17 +10,16 @@ import java.sql.DriverManager;
 import java.sql.PreparedStatement;
 
 import conexDB.ConexionBD;
-
 /**
- * Servlet implementation class Delete
+ * Servlet implementation class Update
  */
-public class Delete extends HttpServlet {
+public class Update extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
     /**
      * @see HttpServlet#HttpServlet()
      */
-    public Delete() {
+    public Update() {
         super();
         // TODO Auto-generated constructor stub
     }
@@ -38,26 +37,30 @@ public class Delete extends HttpServlet {
 	 */
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		// TODO Auto-generated method stub
-
 		try {
 			Class.forName(ConexionBD.driver);
 		}catch(ClassNotFoundException e) {
-			System.out.println("No existe driver " + e);
+			System.out.println("Conexion fallida" + e);
 		}
+		
 		try {
-			Connection conn = DriverManager.getConnection(ConexionBD.url, ConexionBD.user, ConexionBD.password);
-			System.out.println("Conexion exitosa");
-			PreparedStatement st = conn.prepareStatement("delete from usuarios where id=?");
-			st.setInt(1, Integer.valueOf(request.getParameter("id")));
+			Connection conn=DriverManager.getConnection(ConexionBD.url,ConexionBD.user, ConexionBD.password );
+			System.out.println("Exito");
+			PreparedStatement st = conn.prepareStatement("update usuarios set nombre=?, email=?, telefono=? where id=?");
+			st.setInt(4,Integer.valueOf(request.getParameter("id")));
+			st.setString(1,request.getParameter("nombre"));
+			st.setString(2,request.getParameter("email"));
+			st.setString(3,request.getParameter("tlf"));
+			
+			
 			st.executeUpdate();
 			st.close();
 			conn.close();
+			response.sendRedirect("success.jsp?msg=Usuario actualizado");
 			
-			response.sendRedirect("success.jsp?msg= Usuario eliminado");
 		}catch(Exception e) {
 			e.printStackTrace();
 		}
 	}
-	
 
 }
